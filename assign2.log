@@ -1,0 +1,605 @@
+Script started on Wed 24 Feb 2016 09:50:43 PM PST
+]0;mehrshad@ubuntu: ~/Desktopmehrshad@ubuntu:~/Desktop$ exitgdb runcc -o run ass2.o[5@as -g ass2.s -o[C[C[C[C[C[C[Cgdb run[Kas -g ass2.s -o ass2.o
+]0;mehrshad@ubuntu: ~/Desktopmehrshad@ubuntu:~/Desktop$ as -g ass2.s -o ass2.oexit[Kgdb runcc -o run ass2.o
+]0;mehrshad@ubuntu: ~/Desktopmehrshad@ubuntu:~/Desktop$ gcc -o run ass2.o[5@as -g ass2.s -o[C[C[C[C[C[C[Cexit[Kgdb runcc -o run ass2.o[10Pdb run
+GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.2) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from run...done.
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x00000000004004ed <+0>:	mov    $0x601038,%rax
+   0x00000000004004f4 <+7>:	mov    (%rax),%rax
+   0x00000000004004f7 <+10>:	mov    $0x601038,%rbx
+   0x00000000004004fe <+17>:	mov    $0x601040,%r11
+   0x0000000000400505 <+24>:	mov    (%r11),%r11
+   0x0000000000400508 <+27>:	mov    $0x601048,%r12
+   0x000000000040050f <+34>:	mov    (%r12),%r12
+   0x0000000000400513 <+38>:	cmp    $0x0,%rax
+   0x0000000000400517 <+42>:	jge    0x400531 <positive>
+   0x0000000000400519 <+44>:	cmp    %r11,%rax
+   0x000000000040051c <+47>:	jl     0x40057a <finish>
+   0x000000000040051e <+49>:	neg    %rax
+   0x0000000000400521 <+52>:	add    $0x2d,%r14
+   0x0000000000400525 <+56>:	mov    %r14,(%rbx)
+   0x0000000000400528 <+59>:	mov    $0x4,%r10
+   0x000000000040052f <+66>:	jmp    0x400552 <process>
+End of assembler dump.
+(gdb) break *main+7
+Breakpoint 1 at 0x4004f4: file ass2.s, line 11.
+(gdb) run[K[K[Kbreak *main+c[K38
+Breakpoint 2 at 0x400513: file ass2.s, line 17.
+(gdb) break *main+38[K[K66
+Breakpoint 3 at 0x40052f: file ass2.s, line 25.
+(gdb) run
+Starting program: /home/mehrshad/Desktop/run 
+
+Breakpoint 1, main () at ass2.s:11
+11		mov 0(%rax), %rax
+(gdb) print/x %[K$rax
+$1 = 0x601038
+(gdb) continue
+Continuing.
+
+Breakpoint 2, main () at ass2.s:17
+17		cmp $0, %rax
+(gdb) continue[C[C[C[C[C[Cprint/x $rax[K[K[Krbx
+$2 = 0x601038
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main () at ass2.s:25
+25		jmp process
+(gdb) continue[C[C[C[C[C[Cprint/x $rbx[K[K[K[K[K[K[K[K[K[K[K[Kcontinue[C[C[C[C[C[Cprint/x $rax[K[K[K[K[K[K[K[K[K[K[K[Kx/x[K16xb &R
+0x601038:	0x2d	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) disassemble process
+Dump of assembler code for function process:
+   0x0000000000400552 <+0>:	cmp    $0x0,%rax
+   0x0000000000400556 <+4>:	je     0x40057a <finish>
+   0x0000000000400558 <+6>:	mov    $0x0,%r15
+   0x000000000040055f <+13>:	add    $0xa,%r15
+   0x0000000000400563 <+17>:	mov    $0x0,%rdx
+   0x000000000040056a <+24>:	div    %r15
+   0x000000000040056d <+27>:	add    $0x30,%rdx
+   0x0000000000400571 <+31>:	add    $0x1,%rbx
+   0x0000000000400575 <+35>:	mov    %rdx,(%rbx)
+   0x0000000000400578 <+38>:	jmp    0x400552 <process>
+End of assembler dump.
+(gdb) disassemble process[C[C[C[C[C[C[Kbreak *process+4
+Breakpoint 4 at 0x400556: file ass2.s, line 39.
+(gdb) break *process+4[K24
+Breakpoint 5 at 0x40056a: file ass2.s, line 43.
+(gdb) break *process+24[K7
+Breakpoint 6 at 0x40056d: file ass2.s, line 44.
+(gdb) break *process+27[K[K38
+Breakpoint 7 at 0x400578: file ass2.s, line 48.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) n
+Program not restarted.
+(gdb) continue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue[C[C[C[C[C[C[5Prunbreak *process+38274[1P4[C[C[C[C[C[Cdisassemble process[C[C[C[C[C[C[10Px/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[C[Kcontinue[C[C[C[C[C[Cprint/x $rax
+$3 = 0x1e240
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 5, process () at ass2.s:43
+43				div %r15
+(gdb) continue[C[C[C[C[C[Cprint/x $rax
+$4 = 0x1e240
+(gdb) print/x $rax[K[K15
+$5 = 0xa
+(gdb) print/x $r15[K[Kdx
+$6 = 0x0
+(gdb) print/x $rdx15ax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 6, process () at ass2.s:44
+44				add $48, %rdx			#converting to ascii
+(gdb) continue[C[C[C[C[C[Cprint/x $rdx15ax
+$7 = 0x3039
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx
+$8 = 0x6
+(gdb) print/x $rdx[K[K[K[K[K[K[K[K[K[K[K[Kx/16xb &R
+0x601038:	0x2d	0x00	0x00	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 7, process () at ass2.s:48
+48				jmp process
+(gdb) continue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x00	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdxax
+$9 = 0x3039
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 5, process () at ass2.s:43
+43				div %r15
+(gdb) continue[C[C[C[C[C[Cprint/x $rax
+$10 = 0x3039
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx15
+$11 = 0xa
+(gdb) print/x $r15ax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdx
+$12 = 0x0
+(gdb) print/x $rdx15dx[C[C[C[C[C[C[Kprint/x $rdx[C[C[C[C[C[C[Kprint/x $rdx15ax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 6, process () at ass2.s:44
+44				add $48, %rdx			#converting to ascii
+(gdb) continue[C[C[C[C[C[Cprint/x $rdx
+$13 = 0x5
+(gdb) print/x $rdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx15ax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax
+$14 = 0x4d2
+(gdb) print/x $raxdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx15ax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x00	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) co[K[Kx/16xb &R[C[C[C[C[C[Cprint/x $raxdx[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 7, process () at ass2.s:48
+48				jmp process
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $raxdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx15ax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax15dx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[3Px/16xb &R
+0x601038:	0x2d	0x36	0x35	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rax
+$15 = 0x4d2
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 5, process () at ass2.s:43
+43				div %r15
+(gdb) continue[C[C[C[C[C[Cprint/x $rax
+$16 = 0x4d2
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $raxdx
+$17 = 0x0
+(gdb) print/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $raxdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx15
+$18 = 0xa
+(gdb) print/x $r15dxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 6, process () at ass2.s:44
+44				add $48, %rdx			#converting to ascii
+(gdb) continue[C[C[C[C[C[Cprint/x $r15dxax
+$19 = 0x7b
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15dx
+$20 = 0x4
+(gdb) print/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15dxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x35	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 7, process () at ass2.s:48
+48				jmp process
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdx[C[C[C[C[C[C[3Px/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdxax
+$21 = 0x7b
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 5, process () at ass2.s:43
+43				div %r15
+(gdb) continue[C[C[C[C[C[Cprint/x $rax
+$22 = 0x7b
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdx
+$23 = 0x0
+(gdb) print/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15
+$24 = 0xa
+(gdb) print/x $r15dxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 6, process () at ass2.s:44
+44				add $48, %rdx			#converting to ascii
+(gdb) continue[C[C[C[C[C[Cprint/x $r15dxax
+$25 = 0xc
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15dx
+$26 = 0x3
+(gdb) print/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15dxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 7, process () at ass2.s:48
+48				jmp process
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdxaxdx[C[C[C[C[C[C[3Px/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x33	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x33	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 5, process () at ass2.s:43
+43				div %r15
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rax
+$27 = 0xc
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdx
+$28 = 0x0
+(gdb) print/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15
+$29 = 0xa
+(gdb) print/x $r15dxax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 6, process () at ass2.s:44
+44				add $48, %rdx			#converting to ascii
+(gdb) continue[C[C[C[C[C[Cprint/x $r15dx
+$30 = 0x2
+(gdb) print/x $rdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15dxax
+$31 = 0x1
+(gdb) print/x $raxdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15dxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x33	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[Cprint/x $raxdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $r15dxax[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 7, process () at ass2.s:48
+48				jmp process
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rax[C[C[C[C[C[C[3Px/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x33	0x32	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0x00	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x33	0x32	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0x00	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 5, process () at ass2.s:43
+43				div %r15
+(gdb) continue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $rax
+$32 = 0x1
+(gdb) print/x $rax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[Cprint/x $raxdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdx
+$33 = 0x0
+(gdb) print/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+
+Breakpoint 6, process () at ass2.s:44
+44				add $48, %rdx			#converting to ascii
+(gdb) continue[C[C[C[C[C[Cprint/x $rdx
+$34 = 0x1
+(gdb) print/x $rdx[C[C[C[C[C[C[4Pcontinue
+Continuing.
+
+Breakpoint 7, process () at ass2.s:48
+48				jmp process
+(gdb) continue[C[C[C[C[C[Cprint/x $rdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $raxdx[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cprint/x $rdxA[C[C[C[C[C[C[5Pcontinue[C[C[C[C[C[Cprint/x $rdxax[C[C[C[C[C[C[4Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x33	0x32	0x31	0x00
+0x601040:	0x00	0x00	0x00	0x00	0x00	0x00	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cprint/x $rdxA[C[C[C[C[C[C[5Pcontinue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue[C[C[C[C[C[Cx/16xb &R
+0x601038:	0x2d	0x36	0x35	0x34	0x33	0x32	0x31	0x00
+0x601040:	0x00	0x00	0x00	0x00	0x00	0x00	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[1Pcontinue[C[C[C[C[C[Cx/16xb &R[C[C[C[C[C[C[1Pcontinue
+Continuing.
+[Inferior 1 (process 10547) exited normally]
+(gdb) continue
+The program is not being run.
+(gdb) quit
+]0;mehrshad@ubuntu: ~/Desktopmehrshad@ubuntu:~/Desktop$ gdb runcc -o run ass2.o[5@as -g ass2.s -o[C[C[C[C[C[C[C[5Pgcc -o run[C[C[C[C[C[C[C[5@as -g ass2.s -o[C[C[C[C[C[C[C
+]0;mehrshad@ubuntu: ~/Desktopmehrshad@ubuntu:~/Desktop$ as -g ass2.s -o ass2.ogdb run[Kcc -o run ass2.o
+]0;mehrshad@ubuntu: ~/Desktopmehrshad@ubuntu:~/Desktop$ gcc -o run ass2.o[5@as -g ass2.s -o[C[C[C[C[C[C[Cgdb run[Kcc -o run ass2.o[10Pdb run
+GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.2) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from run...done.
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x00000000004004ed <+0>:	mov    $0x601038,%rax
+   0x00000000004004f4 <+7>:	mov    (%rax),%rax
+   0x00000000004004f7 <+10>:	mov    $0x601038,%rbx
+   0x00000000004004fe <+17>:	mov    $0x601040,%r11
+   0x0000000000400505 <+24>:	mov    (%r11),%r11
+   0x0000000000400508 <+27>:	mov    $0x601048,%r12
+   0x000000000040050f <+34>:	mov    (%r12),%r12
+   0x0000000000400513 <+38>:	cmp    $0x0,%rax
+   0x0000000000400517 <+42>:	jge    0x400531 <positive>
+   0x0000000000400519 <+44>:	cmp    %r11,%rax
+   0x000000000040051c <+47>:	jl     0x40057a <finish>
+   0x000000000040051e <+49>:	neg    %rax
+   0x0000000000400521 <+52>:	add    $0x2d,%r14
+   0x0000000000400525 <+56>:	mov    %r14,(%rbx)
+   0x0000000000400528 <+59>:	mov    $0x4,%r10
+   0x000000000040052f <+66>:	jmp    0x400552 <process>
+End of assembler dump.
+(gdb) break *main+38
+Breakpoint 1 at 0x400513: file ass2.s, line 17.
+(gdb) break *main+38[K[K66
+Breakpoint 2 at 0x40052f: file ass2.s, line 25.
+(gdb) run
+Starting program: /home/mehrshad/Desktop/run 
+
+Breakpoint 1, main () at ass2.s:17
+17		cmp $0, %rax
+(gdb) runbreak *main+6638[C[C[C[C[C[Cdisassemble main[C[C[C[C[C[C[2Pbreak *main+3866[K[K[K[K[K[K[K[K[K[K[K[K[K[Kpraint/x $rax
+Undefined command: "praint".  Try "help".
+(gdb) print/x $R[Krax
+$1 = 0x10932
+(gdb) print/x $rax[C[C[C[C[C[C[C[C[1@a[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[C[C[C[C[C[C[C[C[C[C[K[Kbx
+$2 = 0x601038
+(gdb) continue
+Continuing.
+[Inferior 1 (process 10573) exited normally]
+(gdb) disassemble positive
+Dump of assembler code for function positive:
+   0x0000000000400531 <+0>:	cmp    %r12,%rax
+   0x0000000000400534 <+3>:	jge    0x40057a <finish>
+   0x0000000000400536 <+5>:	add    $0x20,%r14
+   0x000000000040053a <+9>:	mov    %r14,(%rbx)
+   0x000000000040053d <+12>:	cmp    $0x0,%rax
+   0x0000000000400541 <+16>:	je     0x400545 <zero>
+   0x0000000000400543 <+18>:	jmp    0x400552 <process>
+End of assembler dump.
+(gdb) break *positive+16
+Breakpoint 3 at 0x400541: file ass2.s, line 32.
+(gdb) run
+Starting program: /home/mehrshad/Desktop/run 
+
+Breakpoint 1, main () at ass2.s:17
+17		cmp $0, %rax
+(gdb) runbreak *positive+16[C[C[C[C[C[Cdisassemble positive[C[C[C[C[C[C[12Pcontinue[C[C[C[C[C[Cprint/x $rbxax
+$3 = 0x10932
+(gdb) print/x $rax[C[C[C[C[C[Crun[Kbreak *positive+16[C[C[C[C[C[Cdisassemble positive[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kx.[K/x[K15[K6xb &rbx[K[K[KR
+0x601038:	0x32	0x09	0x01	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) disassemble process
+Dump of assembler code for function process:
+   0x0000000000400552 <+0>:	cmp    $0x0,%rax
+   0x0000000000400556 <+4>:	je     0x40057a <finish>
+   0x0000000000400558 <+6>:	mov    $0x0,%r15
+   0x000000000040055f <+13>:	add    $0xa,%r15
+   0x0000000000400563 <+17>:	mov    $0x0,%rdx
+   0x000000000040056a <+24>:	div    %r15
+   0x000000000040056d <+27>:	add    $0x30,%rdx
+   0x0000000000400571 <+31>:	add    $0x1,%rbx
+   0x0000000000400575 <+35>:	mov    %rdx,(%rbx)
+   0x0000000000400578 <+38>:	jmp    0x400552 <process>
+End of assembler dump.
+(gdb) break *process+4
+Breakpoint 4 at 0x400556: file ass2.s, line 39.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) n
+Program not restarted.
+(gdb) runbreak *process+4[C[C[C[C[C[Cdisassemble process[C[C[C[C[C[C[10Px/16xb &R[C[C[C[C[C[Cprint/x $rax
+$4 = 0x10932
+(gdb) next
+18		jnl positive
+(gdb) next
+positive () at ass2.s:27
+27		cmp %r12,%rax
+(gdb) disassemble process
+Dump of assembler code for function process:
+   0x0000000000400552 <+0>:	cmp    $0x0,%rax
+   0x0000000000400556 <+4>:	je     0x40057a <finish>
+   0x0000000000400558 <+6>:	mov    $0x0,%r15
+   0x000000000040055f <+13>:	add    $0xa,%r15
+   0x0000000000400563 <+17>:	mov    $0x0,%rdx
+   0x000000000040056a <+24>:	div    %r15
+   0x000000000040056d <+27>:	add    $0x30,%rdx
+   0x0000000000400571 <+31>:	add    $0x1,%rbx
+   0x0000000000400575 <+35>:	mov    %rdx,(%rbx)
+   0x0000000000400578 <+38>:	jmp    0x400552 <process>
+End of assembler dump.
+(gdb) break *ppr[K[Krocess [K+4
+Note: breakpoint 4 also set at pc 0x400556.
+Breakpoint 5 at 0x400556: file ass2.s, line 39.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) n
+Program not restarted.
+(gdb) continue
+Continuing.
+
+Breakpoint 3, positive () at ass2.s:32
+32		je zero
+(gdb) continue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) continue
+Continuing.
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) next
+40				mov $0, %r15
+(gdb) print/x %[K&[K$r15
+$5 = 0xa
+(gdb) print/x $r15[C[C[C[C[C[C[8Pnext
+41				add $10, %r15
+(gdb) nextprint/x $r15
+$6 = 0x0
+(gdb) print/x $r15[C[C[C[C[C[C[8Pnext
+42				mov $0, %rdx
+(gdb) nextprint/x $r15[C[C[C[C[C[C[8Pnext
+43				div %r15
+(gdb) next
+44				add $48, %rdx			#converting to ascii
+(gdb) nextprint/x $r15[K[Kdx
+$7 = 0x9
+(gdb) print/x $rdx[C[C[C[C[C[C[8Pnextprint/x $rdx[K[Kax
+$8 = 0x2a6
+(gdb) print/x $raxdx[C[C[C[C[C[C[8Pnext
+45				add $1, %rbx
+(gdb) nextprint/x $rax[C[C[C[C[C[C[8Pnext
+46				mov %rdx, 0(%rbx)
+(gdb) next
+48				jmp process
+(gdb) x/16xb &R
+0x601038:	0x20	0x30	0x39	0x00	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[5Pnext
+38	process:	cmp $0, %rax		#the number is = or less than 0 finish loop
+(gdb) next
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) next
+40				mov $0, %r15
+(gdb) next
+41				add $10, %r15
+(gdb) next
+42				mov $0, %rdx
+(gdb) nextx/16xb &R[C[C[C[C[C[C[5Pnextx/16xb &R[C[C[C[C[C[C[5Pnextprint/x $raxdx
+$9 = 0x39
+(gdb) print/x $rdx[C[C[C[C[C[C[8Pnextx/16xb &R[C[C[C[C[C[C[5Pnextprint/x $raxdx[C[C[C[C[C[C[8Pnext
+43				div %r15
+(gdb) next
+44				add $48, %rdx			#converting to ascii
+(gdb) nextprint/x $rdx[C[C[C[C[C[C[8Pnextprint/x $rdx
+$10 = 0x8
+(gdb) print/x $rdx[C[C[C[C[C[C[8Pnextprint/x $rdx[C[C[C[C[C[C[8Pnextx/16xb &R[C[C[C[C[C[C[5Pnextprint/x $raxdx
+$11 = 0x8
+(gdb) print/x $rdx[C[C[C[C[C[C[8Pnextprint/x $rdx[C[C[C[C[C[C[8Pnextx/16xb &R[C[C[C[C[C[C[5Pnextprint/x $rax
+$12 = 0x43
+(gdb) print/x $raxdx[C[C[C[C[C[C[8Pnext
+45				add $1, %rbx
+(gdb) next
+46				mov %rdx, 0(%rbx)
+(gdb) next
+48				jmp process
+(gdb) nextprint/x $raxdx[C[C[C[C[C[C[8Pnextprint/x $rdx[C[C[C[C[C[C[8Pnextx/16xb &R
+0x601038:	0x20	0x30	0x39	0x38	0x00	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x80	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[5Pnext
+38	process:	cmp $0, %rax		#the number is = or less than 0 finish loop
+(gdb) next
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) next
+40				mov $0, %r15
+(gdb) next
+41				add $10, %r15
+(gdb) next
+42				mov $0, %rdx
+(gdb) next
+43				div %r15
+(gdb) next
+44				add $48, %rdx			#converting to ascii
+(gdb) next
+45				add $1, %rbx
+(gdb) next
+46				mov %rdx, 0(%rbx)
+(gdb) next
+48				jmp process
+(gdb) nextx/16xb &R
+0x601038:	0x20	0x30	0x39	0x38	0x37	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[5Pnext
+38	process:	cmp $0, %rax		#the number is = or less than 0 finish loop
+(gdb) next
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) next
+40				mov $0, %r15
+(gdb) next
+41				add $10, %r15
+(gdb) next
+42				mov $0, %rdx
+(gdb) next
+43				div %r15
+(gdb) next
+44				add $48, %rdx			#converting to ascii
+(gdb) nextx/16xb &R[C[C[C[C[C[C[5Pnextx/16xb &R
+0x601038:	0x20	0x30	0x39	0x38	0x37	0x00	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0xff	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[5Pnext
+45				add $1, %rbx
+(gdb) nextx/16xb &R[C[C[C[C[C[C[5Pnext
+46				mov %rdx, 0(%rbx)
+(gdb) next
+48				jmp process
+(gdb) nextx/16xb &R[C[C[C[C[C[C[5Pnextx/16xb &R
+0x601038:	0x20	0x30	0x39	0x38	0x37	0x36	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0x00	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[5Pnext
+38	process:	cmp $0, %rax		#the number is = or less than 0 finish loop
+(gdb) next
+
+Breakpoint 4, process () at ass2.s:39
+39				je	finish
+(gdb) next
+finish () at ass2.s:51
+51			ret 
+(gdb) nextx/16xb &R[C[C[C[C[C[C[5Pnextx/16xb &R
+0x601038:	0x20	0x30	0x39	0x38	0x37	0x36	0x00	0x00
+0x601040:	0x00	0x00	0x00	0x00	0x00	0xff	0xff	0xff
+(gdb) x/16xb &R[C[C[C[C[C[C[5Pnext
+__libc_start_main (main=0x4004ed <main>, argc=1, argv=0x7fffffffe008, 
+    init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdff8)
+    at libc-start.c:321
+321	libc-start.c: No such file or directory.
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 10579] will be killed.
+
+Quit anyway? (y or n) y
+]0;mehrshad@ubuntu: ~/Desktopmehrshad@ubuntu:~/Desktop$ exit
+Script done on Wed 24 Feb 2016 10:23:06 PM PST
